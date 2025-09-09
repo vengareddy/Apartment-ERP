@@ -49,24 +49,61 @@ Status: Payment Link Sent for all bills`);
 
   const getResidentName = (flat: string) => {
     const residents: { [key: string]: string } = {
-      'A-101': 'John Smith',
-      'A-102': 'Sarah Wilson', 
-      'A-103': 'Mike Johnson',
-      'B-201': 'Lisa Brown',
-      'B-202': 'David Lee',
-      'B-203': 'Emma Davis',
-      'C-301': 'Alex Chen',
-      'C-302': 'Nina Patel'
+      '101': ' Bapi Raju',
+      '102': ' Satyapraveen',
+      '103': ' Arun',
+      '104': ' Sastry',
+      '105': ' ',
+      '106': ' ',
+      '107': ' Prem Kumar',
+      '108': ' Suresh Kumar',
+      '109': ' ',
+      '201': ' Venkata Ramana',
+      '202': ' ',
+      '203': ' ',
+      '204': ' ',
+      '205': ' ',
+      '206': ' ',
+      '207': ' ',
+      '208': ' ',
+      '209': ' ',
+      '301': ' ',
+      '302': 'Rambabu',
+      '303': ' ',
+      '304': ' ',
+      '305': ' ',
+      '306': 'Hemanth',
+      '307': ' ',
+      '308': ' ',
+      '309': ' ',
+      '401': 'Pavan Kumar',
+      '402': ' ',
+      '403': ' ',
+      '404': ' ',
+      '405': ' ',
+      '406': ' ',
+      '407': ' ',
+      '408': ' ',
+      '409': ' ',
+      '501': ' ',
+      '502': ' ',
+      '503': ' ',
+      '504': ' ',
+      '505': ' ',
+      '506': ' ',
+      '507': 'Mallikharjuna Rao',
+      '508': ' ',
+      '509': ' ',
     };
     return residents[flat] || 'Resident';
   };
 
   const getBillAmount = (type: string, flat: string) => {
     const rates: { [key: string]: number } = {
-      'maintenance': 5400,
-      'water': 1200,
-      'electricity': 2800,
-      'parking': 500
+      'maintenance': 2000,
+      'water': 0,
+      'electricity': 0,
+      'parking': 0
     };
     return rates[type] || 5400;
   };
