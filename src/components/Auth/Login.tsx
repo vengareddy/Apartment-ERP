@@ -19,13 +19,10 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
   // Demo users for different roles
   const demoUsers = [
-    { id: '1', name: 'John Admin', email: 'admin@apartment.com', role: 'admin' as const, password: 'admin123', flatNumber: undefined },
-    { id: '2', name: 'Sarah Treasurer', email: 'treasurer@apartment.com', role: 'treasurer' as const, password: 'treasurer123', flatNumber: undefined },
-    { id: '8', name: 'Cultural Committee', email: 'cultural@apartment.com', role: 'cultural_committee' as const, password: 'cultural123', flatNumber: undefined },
-    { id: '3', name: 'John Smith (A-101 Owner)', email: 'john.smith@email.com', role: 'resident' as const, flatNumber: 'A-101', password: 'owner123' },
-    { id: '5', name: 'Suresh Reddy (A-102 Owner)', email: 'suresh.reddy@email.com', role: 'resident' as const, flatNumber: 'A-102', password: 'owner123' },
-    { id: '6', name: 'Lakshmi Devi (B-203 Owner)', email: 'lakshmi.devi@email.com', role: 'resident' as const, flatNumber: 'B-203', password: 'owner123' },
-    { id: '4', name: 'Lisa Auditor', email: 'auditor@apartment.com', role: 'auditor' as const, password: 'auditor123', flatNumber: undefined },
+    { id: '1', name: 'System Admin', email: 'admin@yoursociety.com', role: 'admin' as const, password: 'admin123', flatNumber: undefined },
+    { id: '2', name: 'Society Treasurer', email: 'treasurer@yoursociety.com', role: 'treasurer' as const, password: 'treasurer123', flatNumber: undefined },
+    { id: '3', name: 'Cultural Committee', email: 'cultural@yoursociety.com', role: 'cultural_committee' as const, password: 'cultural123', flatNumber: undefined },
+    { id: '4', name: 'Society Auditor', email: 'auditor@yoursociety.com', role: 'auditor' as const, password: 'auditor123', flatNumber: undefined },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -35,7 +32,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       const { password: _, ...userWithoutPassword } = user;
       onLogin(userWithoutPassword);
     } else {
-      alert('Invalid credentials. Try the demo accounts shown below.');
+      alert('Invalid credentials. Please contact your society administrator for access.');
     }
   };
 
@@ -46,7 +43,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           <div className="flex justify-center">
             <Building2 className="w-16 h-16 text-blue-600" />
           </div>
-          <h2 className="mt-4 text-3xl font-bold text-gray-900">ApartmentERP</h2>
+          <h2 className="mt-4 text-3xl font-bold text-gray-900">Society ERP</h2>
           <p className="mt-2 text-sm text-gray-600">Financial Management System</p>
         </div>
 
@@ -97,18 +94,13 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           </form>
 
           <div className="mt-6 border-t border-gray-200 pt-6">
-            <h3 className="text-sm font-medium text-gray-700 mb-3">Demo Accounts - All Residents Use Owner Login:</h3>
+            <h3 className="text-sm font-medium text-gray-700 mb-3">System Access Accounts:</h3>
             <div className="space-y-2 text-sm">
               {demoUsers.map((user) => (
                 <div key={user.id} className="flex justify-between items-center bg-gray-50 p-2 rounded">
                   <div>
                     <span className="font-medium">{user.role.toUpperCase()}</span>
                     <div className="text-xs text-gray-600">{user.email}</div>
-                    {user.role === 'resident' && user.flatNumber && (
-                      <div className="text-xs text-blue-600">
-                        {['A-102', 'B-203', 'C-301'].includes(user.flatNumber) ? 'Owner - Has Tenant' : 'Owner - Self Occupied'}
-                      </div>
-                    )}
                   </div>
                   <button
                     type="button"
@@ -125,11 +117,10 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             </div>
             
             <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-              <h4 className="text-sm font-medium text-blue-900 mb-2">Owner Login System:</h4>
+              <h4 className="text-sm font-medium text-blue-900 mb-2">Production Setup Required:</h4>
               <p className="text-xs text-blue-800">
-                All residents use their owner login credentials. Flat owners (whether self-occupied or rented out) login with their 
-                owner account to access their flat's information, monitor tenant payments, receive society notices, and track expenses.
-                There are no separate tenant login accounts - owners manage everything for their flats.
+                This is a production-ready system. Please configure your society details, add real user accounts, 
+                and set up payment integration before going live. Contact your system administrator for setup assistance.
               </p>
             </div>
           </div>

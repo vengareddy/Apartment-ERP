@@ -54,7 +54,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, userRole, onToggle }) => {
         {!collapsed && (
           <div className="flex items-center space-x-2">
             <Building2 className="w-8 h-8 text-blue-600" />
-            <span className="text-xl font-bold text-gray-800">ApartmentERP</span>
+            <span className="text-xl font-bold text-gray-800">Society ERP</span>
           </div>
         )}
         <button
