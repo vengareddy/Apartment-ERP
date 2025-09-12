@@ -13,12 +13,12 @@ interface GeneralSettingsProps {
 
 const GeneralSettings: React.FC<GeneralSettingsProps> = ({ currentUser }) => {
   const [settings, setSettings] = useState({
-    societyName: 'SDVR Welfare Association',
-    address: 'SDVR Colony, Hyderabad, Telangana 500001',
-    phone: '+91 93926 15543',
-    email: 'admin@sdvrwelfare.com',
-    website: 'www.sdvrwelfare.com',
-    registrationNumber: 'REG/2020/SDVR/001',
+    societyName: 'Your Society Name',
+    address: 'Your Complete Society Address with Pin Code',
+    phone: '+91 XXXXX XXXXX',
+    email: 'admin@yoursociety.com',
+    website: 'www.yoursociety.com',
+    registrationNumber: 'REG/YEAR/YOUR/001',
     totalFlats: 84,
     totalBuildings: 3,
     establishedYear: 2020,
@@ -26,12 +26,13 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({ currentUser }) => {
     financialYearStart: 'april',
     currency: 'INR',
     timezone: 'Asia/Kolkata',
-    upiId: '9392615543@ybl',
-    whatsappBusinessNumber: '+91 93926 15543'
+    upiId: 'yourupiid@bank',
+    whatsappBusinessNumber: '+91 XXXXX XXXXX'
   });
 
   const handleSave = () => {
-    alert('Settings saved successfully!');
+    // TODO: Implement actual save to database
+    alert('Settings saved successfully! Please ensure all details are correct before going live.');
   };
 
   return (

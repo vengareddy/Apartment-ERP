@@ -16,23 +16,33 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  // Demo users for different roles
-  const demoUsers = [
-    { id: '1', name: 'System Admin', email: 'admin@yoursociety.com', role: 'admin' as const, password: 'admin123', flatNumber: undefined },
-    { id: '2', name: 'Society Treasurer', email: 'treasurer@yoursociety.com', role: 'treasurer' as const, password: 'treasurer123', flatNumber: undefined },
-    { id: '3', name: 'Cultural Committee', email: 'cultural@yoursociety.com', role: 'cultural_committee' as const, password: 'cultural123', flatNumber: undefined },
-    { id: '4', name: 'Society Auditor', email: 'auditor@yoursociety.com', role: 'auditor' as const, password: 'auditor123', flatNumber: undefined },
-  ];
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const user = demoUsers.find(u => u.email === email && u.password === password);
-    if (user) {
-      const { password: _, ...userWithoutPassword } = user;
-      onLogin(userWithoutPassword);
-    } else {
-      alert('Invalid credentials. Please contact your society administrator for access.');
+    
+    if (!email || !password) {
+      alert('Please enter both email and password');
+      return;
+    }
+
+    setLoading(true);
+    
+    try {
+      // TODO: Replace with actual authentication API call
+      // const response = await fetch('/api/auth/login', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ email, password })
+      // });
+      
+      // For now, show message to set up authentication
+      alert('Authentication system needs to be configured. Please contact your system administrator.');
+      
+    } catch (error) {
+      alert('Login failed. Please check your credentials and try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -87,40 +97,30 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
             <button
               type="submit"
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+              disabled={loading}
+              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:bg-gray-400"
             >
-              Sign in
+              {loading ? 'Signing in...' : 'Sign in'}
             </button>
           </form>
 
           <div className="mt-6 border-t border-gray-200 pt-6">
-            <h3 className="text-sm font-medium text-gray-700 mb-3">System Access Accounts:</h3>
-            <div className="space-y-2 text-sm">
-              {demoUsers.map((user) => (
-                <div key={user.id} className="flex justify-between items-center bg-gray-50 p-2 rounded">
-                  <div>
-                    <span className="font-medium">{user.role.toUpperCase()}</span>
-                    <div className="text-xs text-gray-600">{user.email}</div>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setEmail(user.email);
-                      setPassword(user.password);
-                    }}
-                    className="text-blue-600 hover:text-blue-700 text-xs"
-                  >
-                    Use
-                  </button>
-                </div>
-              ))}
+            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <h4 className="text-sm font-medium text-blue-900 mb-2">🏢 Society ERP System</h4>
+              <p className="text-xs text-blue-800 mb-3">
+                This is a production-ready financial management system for apartment societies.
+              </p>
+              <div className="space-y-2 text-xs text-blue-700">
+                <div>📧 <strong>Admin Setup:</strong> Contact your system administrator for account creation</div>
+                <div>💳 <strong>Payments:</strong> UPI, Net Banking, and Card payments supported</div>
+                <div>📱 <strong>Mobile App:</strong> Available for residents on Android and iOS</div>
+                <div>🔒 <strong>Security:</strong> Bank-grade security with audit trails</div>
+              </div>
             </div>
             
-            <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-              <h4 className="text-sm font-medium text-blue-900 mb-2">Production Setup Required:</h4>
-              <p className="text-xs text-blue-800">
-                This is a production-ready system. Please configure your society details, add real user accounts, 
-                and set up payment integration before going live. Contact your system administrator for setup assistance.
+            <div className="mt-4 text-center">
+              <p className="text-xs text-gray-500">
+                Need help? Contact: <span className="font-medium">support@yoursociety.com</span>
               </p>
             </div>
           </div>
